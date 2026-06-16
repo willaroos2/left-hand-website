@@ -115,7 +115,7 @@ function createCaseStudyLink({ url, displayLink }) {
 
 function createBackNav() {
   const a = document.createElement("a");
-  a.href = "/projects.html";
+  a.href = "projects.html";
   a.className = "case-study-back";
 
   const icon = document.createElement("span");
@@ -183,7 +183,7 @@ function renderCaseStudy(root, slug, data) {
 }
 
 async function initCaseStudyPage() {
-  initLayout({ currentPath: "/case-study.html" });
+  initLayout({ currentPath: "case-study.html" });
 
   const root = document.querySelector("[data-case-study-root]");
   const slug = getSlugFromQuery();

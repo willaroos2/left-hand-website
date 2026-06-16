@@ -173,7 +173,7 @@ function createAccordionSections(sections = []) {
 
 function createBackNav() {
   const a = document.createElement("a");
-  a.href = "/projects.html";
+  a.href = "projects.html";
   a.className = "case-study-back";
 
   const icon = document.createElement("span");
@@ -265,7 +265,7 @@ function renderCaseStudy(root, slug, data) {
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 async function initProjectsPage() {
-  initLayout({ currentPath: "/projects.html" });
+  initLayout({ currentPath: "projects.html" });
 
   const slug = location.search.slice(1);
 

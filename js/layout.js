@@ -1,18 +1,19 @@
 const LOGO = {
-  href: "/",
+  href: "index.html",
   label: "Left hand",
 };
 
 const NAV_LINKS = [
-  { href: "/projects.html", label: "Projects" },
-  { href: "/about.html", label: "About" },
-  { href: "/contact.html", label: "Contact" },
+  { href: "projects.html", label: "Projects" },
+  { href: "about.html", label: "About" },
+  { href: "contact.html", label: "Contact" },
 ];
 
 function isNavLinkCurrent(href, currentPath) {
-  if (href === currentPath) return true;
+  const pathBase = currentPath.split("/").pop();
+  if (href === pathBase) return true;
 
-  if (href === "/projects.html" && currentPath.endsWith("/case-study.html")) {
+  if (href === "projects.html" && pathBase === "case-study.html") {
     return true;
   }
 

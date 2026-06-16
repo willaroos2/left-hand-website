@@ -1,5 +1,5 @@
-const MANIFEST_URL = "/data/case-studies.json";
-const CONTENT_BASE = "/content/case-studies";
+const MANIFEST_URL = "data/case-studies.json";
+const CONTENT_BASE = "content/case-studies";
 
 export async function fetchCaseStudyManifest() {
   const response = await fetch(MANIFEST_URL);
@@ -22,5 +22,5 @@ export async function fetchCaseStudy(slug) {
 }
 
 export function caseStudyUrl(slug) {
-  return `/projects?${encodeURIComponent(slug)}`;
+  return `projects.html?${encodeURIComponent(slug)}`;
 }
