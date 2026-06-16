@@ -1,0 +1,44 @@
+{
+    "title": "Delivery driver happiness research at Orderin",
+    "shortTitle": "Delivery driver research",
+    "organisation": "Orderin",
+    "year": "2024",
+    "role": "Lead Product Designer",
+    "tags": ["Delivery operations", "User research", "User interviews"],
+    "featuredImage": "/images/orderin-research/featured-image.jpg",
+    "imagesWithCaptions": [
+        {
+            "src": "/images/orderin-research/data-gathering.jpg",
+            "alt": "Orderin Research",
+            "caption": "We gathered data both internal and competitor sources, and compiling everything on a Miro board"
+        },
+        {
+            "src": "/images/orderin-research/driver-stories.jpg",
+            "alt": "Orderin Research",
+            "caption": "Drivers shared emotionally charged stories that were not always easy to hear"
+        },
+        {
+            "src": "/images/orderin-research/driver-outcomes.jpg",
+            "alt": "Orderin Research",
+            "caption": "Increased empathy and respect for drivers, along with better earnings"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "About",
+            "content": "Orderin started noticing a increasing decline in attendance, engagement and overall happiness in their driver network. These behaviour changes directly affected key metrics that were important for the business' success. By not prioritising their needs, Orderin was starting to lose drivers to competitor companies and negatively impact service delivery to  clients, so it was important to handle this problem with sensitivity and a people-first approach."
+        },
+        {
+            "heading": "Process",
+            "content": "Myself and the head of design kicked off the process with an intensive research project. Our aim: better understand delivery drivers' lives, experiences and challenges. By getting to know them and understanding their points of view, we could use our insights to identify the right problems to solve.Methodology: We gathered data both internal and competitor sources. We investigated all aspects of the delivery driver experience – including processes, earnings, and general satisfaction. As we spoke to drivers and stakeholders we compiled all our data and insights on a large Miro board. As we spotted trends and patterns we were able to start organising and sorting our findings.The report was difficult to compile and present in an objective manner, due to the emotionally charged stories shared by some drivers. Presenting this data to Exco in an impactful, but impartial manner was challenging."
+        },
+        {
+            "heading": "Findings",
+            "content": "Earnings at Orderin are not sufficient for a driver to pass up other earning opportunities with competitors. This was the overarching, strongest sentiment that fuelled many of the other issues. Orderin's schedule structure limit drivers' earnings potential. Drivers can't book as much time to work as they'd want, and being on a schedule requires them to stay online even when deliveries are slow.High expenses and risks don't justify the little income they get. As independent contractors, drivers are extremely conscious of petrol costs, maintenance, gear, and the risk on the road they have to carry.Performance management does not consider real world challenges. Performance system were also perceived as punishment-focused, and do not recognise and reward good performance.Drivers experience constant insecurity and instability in gig economy work. Drivers enjoy being able to work for themselves, but at the same time feel insecure about their futures due to the unstable and unpredictable nature of gig economy work. Drivers don't feel respected, heard and valued. Instead, drivers at Orderin feel punished, blamed and excessively controlled. This was difficult to hear, as a researcher and employee of the business. "
+        },
+        {
+            "heading": "Outcomes",
+            "content": "Drivers' rates were increased, resulting in higher earnings over time. Driver incentive plans and promotions were launched to supplement income. Driver needs became a more central to decisions on processes and features. Orderin observed a steady increase in delivery performance and overall driver engagement."
+        }
+    ]
+}

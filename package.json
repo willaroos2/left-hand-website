@@ -1,0 +1,9 @@
+{
+  "name": "left-hand-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-case-studies.js",
+    "dev": "node scripts/build-case-studies.js && npx --yes serve ."
+  }
+}

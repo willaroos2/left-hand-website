@@ -1,0 +1,40 @@
+{
+  "$schema": "../case-studies/case-study.schema.json",
+  "title": "Full Case Study Title",
+  "shortTitle": "Short Title",
+  "organisation": "Organisation Name",
+  "year": "2024",
+  "role": "Your Role",
+  "tags": ["Tag One", "Tag Two"],
+  "featuredImage": "/images/slug/featured-image.jpg",
+  "imagesWithCaptions": [
+    {
+      "src": "/images/slug/image-one.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "Caption for image one"
+    },
+    {
+      "src": "/images/slug/image-two.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "Caption for image two"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "About",
+      "content": "<p>Placeholder overview content.</p>"
+    },
+    {
+      "heading": "Process",
+      "content": "<p>Placeholder problem content.</p>"
+    },
+    {
+      "heading": "Outcome",
+      "content": "<p>Placeholder outcome content.</p>"
+    }
+  ],
+  "link": {
+    "url": "https://example.com",
+    "displayLink": "example.com"
+  }
+}

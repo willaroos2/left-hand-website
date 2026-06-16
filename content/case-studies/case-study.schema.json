@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CaseStudy",
+  "type": "object",
+  "required": ["title"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Case study title"
+    },
+    "shortTitle": {
+      "type": "string",
+      "description": "Shorter title for use in cards and listings"
+    },
+    "organisation": {
+      "type": "string",
+      "description": "The organisation or company the work was done for"
+    },
+    "year": {
+      "type": "string",
+      "description": "Year the work was completed (e.g. \"2024\" or \"2023–2024\")"
+    },
+    "role": {
+      "type": "string",
+      "description": "Your role on the project"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Topic or discipline labels"
+    },
+    "featuredImage": {
+      "type": "string",
+      "description": "URL or path to the hero image"
+    },
+    "imagesWithCaptions": {
+      "type": "array",
+      "description": "Images with captions displayed in the media column",
+      "items": {
+        "type": "object",
+        "required": ["src", "caption"],
+        "properties": {
+          "src": {
+            "type": "string",
+            "description": "URL or path to the image"
+          },
+          "alt": {
+            "type": "string",
+            "description": "Accessible description of the image"
+          },
+          "caption": {
+            "type": "string",
+            "description": "Caption displayed below the image"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "sections": {
+      "type": "array",
+      "description": "Accordion sections — any number, any headings, in order",
+      "items": {
+        "type": "object",
+        "required": ["heading", "content"],
+        "properties": {
+          "heading": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "link": {
+      "type": "object",
+      "description": "An external link displayed below the accordions",
+      "required": ["url", "displayLink"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The full URL the link points to"
+        },
+        "displayLink": {
+          "type": "string",
+          "description": "The text shown to the user"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

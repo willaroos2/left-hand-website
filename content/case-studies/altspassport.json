@@ -1,0 +1,55 @@
+{
+  "$schema": "../case-studies/case-study.schema.json",
+  "title": "Brand and product strategy for AltsPassport",
+  "shortTitle": "Brand and product strategy",
+  "organisation": "AltsPassport",
+  "year": "2024",
+  "role": "Your Role",
+  "tags": ["AI", "Alternative Investments", "UI Design", "Brand strategy", "Website design" ],
+  "featuredImage": "/images/altspassport/altsp-featured.jpg",
+  "imagesWithCaptions": [
+    {
+      "src": "/images/altspassport/existing-brand.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "Existing brand elements and styles"
+    },
+    {
+      "src": "/images/altspassport/new-brand.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "An updated brand look and feel"
+    },
+    {
+      "src": "/images/altspassport/website-mock.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "Applying updated branding and content strategy to their website"
+    },
+    {
+      "src": "/images/altspassport/website-elements.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "Visual elements on the webiste"
+    },
+    {
+      "src": "/images/altspassport/ui-dashboard.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "High fidelity UI mockups of a dashboard concept"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "About",
+      "content": "AltsPassport is an AI-powered market network that connects alternative fund managers with investors. They had a proof of concept product and a website, but both fell short of the founders' vision — investors struggled to understand their product, and visuals were underdeveloped. With investor conversations on the horizon, they needed a significant lift across their product and web presence. Pepperplane brought in UX strategy support, and I led the visual direction, website design and high-fidelity UI."
+    },
+    {
+      "heading": "Process",
+      "content": "We started at the foundation — workshopping their brand, business proposition and target customers to establish a clear strategic direction for the website's content and visuals. From there I developed an updated visual language that enhanced their existing brand and respected their wish to keep their existing logo: Sharper, more distinctive, and deliberately different from the blue and white that is the go-to in their competitive landscape. The UX work ran in parallel, and I used Figma and Figma Make to translate user interviews, problem statements, content from ideation workshops, and user journeys into interactive prototypes and high-fidelity product UI"
+    },
+    {
+      "heading": "Outcome",
+      "content": "AltsPassport received a new website, a distinctive visual identity, and polished product UI and collateral ready for investor and sales conversations. Their refreshed brand gives them a differentiated presence that supports their unique vision. The combination of UX and UI work helped bring their full vision together into something cohesive and credible."
+    }
+  ],
+  "link": {
+    "url": "https://altspassport.com/",
+    "displayLink": "altspassport.com"
+  }
+}

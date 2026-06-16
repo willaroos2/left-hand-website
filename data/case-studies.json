@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-06-16T19:16:10.963Z",
+  "caseStudies": [
+    {
+      "slug": "altspassport",
+      "title": "Brand and product strategy for AltsPassport",
+      "shortTitle": "Brand and product strategy",
+      "organisation": "AltsPassport",
+      "year": "2024",
+      "role": "Your Role",
+      "tags": [
+        "AI",
+        "Alternative Investments",
+        "UI Design",
+        "Brand strategy",
+        "Website design"
+      ],
+      "featuredImage": "/images/altspassport/altsp-featured.jpg"
+    },
+    {
+      "slug": "orderin-research",
+      "title": "Delivery driver happiness research at Orderin",
+      "shortTitle": "Delivery driver research",
+      "organisation": "Orderin",
+      "year": "2024",
+      "role": "Lead Product Designer",
+      "tags": [
+        "Delivery operations",
+        "User research",
+        "User interviews"
+      ],
+      "featuredImage": "/images/orderin-research/featured-image.jpg"
+    },
+    {
+      "slug": "enterprise-ireland",
+      "title": "Helping users find their way on Enterprise Ireland",
+      "shortTitle": "Website and information architecture",
+      "organisation": "Enterprise Ireland",
+      "year": "2023",
+      "role": "Lead Product Designer",
+      "tags": [
+        "Government services",
+        "Information architecture",
+        "Website design"
+      ],
+      "featuredImage": "/images/enterprise-ireland/featured-image.jpg"
+    }
+  ]
+}

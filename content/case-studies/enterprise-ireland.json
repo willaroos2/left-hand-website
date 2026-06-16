@@ -1,0 +1,64 @@
+{
+    "title": "Helping users find their way on Enterprise Ireland",
+    "shortTitle": "Website and information architecture",
+    "organisation": "Enterprise Ireland",
+    "year": "2023",
+    "role": "Lead Product Designer",
+    "tags": ["Government services", "Information architecture", "Website design"],
+    "link": {
+             "url": "https://www.enterprise-ireland.com/en/",
+              "displayLink": "enterprise-ireland.com"
+            },
+    "featuredImage": "/images/enterprise-ireland/featured-image.jpg",
+    "imagesWithCaptions": [
+        {
+            "src": "/images/enterprise-ireland/site-map-current.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "Mapping Enterprise Ireland's existing site structure and content"
+        },
+        {
+            "src": "/images/enterprise-ireland/site-map-new.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "The new, simplified site map showed that even though we were removing a lot from the site, important content would still be easily accessible"
+        },
+        {
+            "src": "/images/enterprise-ireland/nav-before.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "The previous main navigation made it difficult to find relevant resources"
+        },
+        {
+            "src": "/images/enterprise-ireland/nav-after.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "The new navigation structure centralises resources and makes it easy for users to navigate according to their goals"
+        },
+        {
+            "src": "/images/enterprise-ireland/mobile-nav.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "The mobile experience initially (left) and after (right)"
+        },
+        {
+            "src": "/images/enterprise-ireland/wireframes-all.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "Wireframes of the user journey from the landing page to a support"
+        },
+        {
+            "src": "/images/enterprise-ireland/ui-all.jpg",
+            "alt": "Enterprise Ireland",
+            "caption": "Our structural and architectural work translated to UI by a marketing agency"
+        }
+    ],
+    "sections": [
+        {
+            "heading": "About",
+            "content": "Enterprise Ireland is a government organisation that helps Irish businesses start up, grow and go global. By 2022, their website had grown unwieldy — a dumping ground for every initiative, resource and campaign the organisation had ever produced. Collaborating with UX agency Each & Other, our team of three designers spent six months untangling it: researching, restructuring and wireframing a new information architecture and navigation system from the ground up."
+        },
+        {
+            "heading": "Process",
+            "content": "Research before starting design work was key: We interviewed stakeholders across the organisation, as well as the entrepreneurs and business owners who actually used the site. We also mapped every existing page to identify duplication, dead ends, and patterns for new potential content groups. Finally, we analysed existing content-heavy and government service platforms done well. Findings were unsurprising but impactful: the site was effectively unusable for its core audience. <br><br> The redesign started with a new content structure. With some decisive deleting, and a lot of merciless merging, we arrived at a simple structure built around three things most relevant to users — what type of business they are, what support they're looking for, and their goals. We relied heavily on wireframes to demonstrate and share our ideas for the restructure. The visual representation of the new IA was much more effective and clearly understood than explaining quite a specialised UX term using  abstract user journeys and complex site map spreadsheets. "
+        },
+        {
+            "heading": "Outcomes",
+            "content": "The home page now provides clear entry points for various audiences. Supports on a support category page can now be filtered according to type, goal and business size. The support page template addresses a number of problems: Support pages previously had inconsistent designs lacked clarity. It was difficult to read, and hard to tell if a support is relevant to the viewer. It also wasn’t clear what to do next to get the support. I gave the support page template a ‘key information’ near the top, so a user can quickly see at a glance whether the support is right for them. I also divided content into set, clear sections that were consistent on each page, greatly reducing cognitive load.<br><br>The wireframes were handed off to a branding agency, and the redesign was implemented in full alongside Enterprise Ireland's broader rebrand. Seeing the structure we'd carefully mapped in spreadsheets and wireframes come to life — skinned, styled and live — was deeply satisfying. The vast majority of our architectural decisions were retained through to launch."
+        }
+    ]
+}
