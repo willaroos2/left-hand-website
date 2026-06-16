@@ -6,15 +6,15 @@
   "year": "2024",
   "role": "Your Role",
   "tags": ["Tag One", "Tag Two"],
-  "featuredImage": "/images/slug/featured-image.jpg",
+  "featuredImage": "images/slug/featured-image.jpg",
   "imagesWithCaptions": [
     {
-      "src": "/images/slug/image-one.jpg",
+      "src": "images/slug/image-one.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "Caption for image one"
     },
     {
-      "src": "/images/slug/image-two.jpg",
+      "src": "images/slug/image-two.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "Caption for image two"
     }

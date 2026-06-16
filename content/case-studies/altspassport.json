@@ -6,30 +6,30 @@
   "year": "2024",
   "role": "Your Role",
   "tags": ["AI", "Alternative Investments", "UI Design", "Brand strategy", "Website design" ],
-  "featuredImage": "/images/altspassport/altsp-featured.jpg",
+  "featuredImage": "images/altspassport/altsp-featured.jpg",
   "imagesWithCaptions": [
     {
-      "src": "/images/altspassport/existing-brand.jpg",
+      "src": "images/altspassport/existing-brand.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "Existing brand elements and styles"
     },
     {
-      "src": "/images/altspassport/new-brand.jpg",
+      "src": "images/altspassport/new-brand.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "An updated brand look and feel"
     },
     {
-      "src": "/images/altspassport/website-mock.jpg",
+      "src": "images/altspassport/website-mock.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "Applying updated branding and content strategy to their website"
     },
     {
-      "src": "/images/altspassport/website-elements.jpg",
+      "src": "images/altspassport/website-elements.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "Visual elements on the webiste"
     },
     {
-      "src": "/images/altspassport/ui-dashboard.jpg",
+      "src": "images/altspassport/ui-dashboard.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "High fidelity UI mockups of a dashboard concept"
     }

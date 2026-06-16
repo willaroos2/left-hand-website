@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-16T19:51:55.294Z",
+  "generatedAt": "2026-06-16T20:02:33.696Z",
   "caseStudies": [
     {
       "slug": "altspassport",
@@ -15,7 +15,7 @@
         "Brand strategy",
         "Website design"
       ],
-      "featuredImage": "/images/altspassport/altsp-featured.jpg"
+      "featuredImage": "images/altspassport/altsp-featured.jpg"
     },
     {
       "slug": "orderin-research",
@@ -29,7 +29,7 @@
         "User research",
         "User interviews"
       ],
-      "featuredImage": "/images/orderin-research/featured-image.jpg"
+      "featuredImage": "images/orderin-research/featured-image.jpg"
     },
     {
       "slug": "enterprise-ireland",
@@ -43,7 +43,7 @@
         "Information architecture",
         "Website design"
       ],
-      "featuredImage": "/images/enterprise-ireland/featured-image.jpg"
+      "featuredImage": "images/enterprise-ireland/featured-image.jpg"
     }
   ]
 }

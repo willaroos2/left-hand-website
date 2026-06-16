@@ -9,40 +9,40 @@
              "url": "https://www.enterprise-ireland.com/en/",
               "displayLink": "enterprise-ireland.com"
             },
-    "featuredImage": "/images/enterprise-ireland/featured-image.jpg",
+    "featuredImage": "images/enterprise-ireland/featured-image.jpg",
     "imagesWithCaptions": [
         {
-            "src": "/images/enterprise-ireland/site-map-current.jpg",
+            "src": "images/enterprise-ireland/site-map-current.jpg",
             "alt": "Enterprise Ireland",
             "caption": "Mapping Enterprise Ireland's existing site structure and content"
         },
         {
-            "src": "/images/enterprise-ireland/site-map-new.jpg",
+            "src": "images/enterprise-ireland/site-map-new.jpg",
             "alt": "Enterprise Ireland",
             "caption": "The new, simplified site map showed that even though we were removing a lot from the site, important content would still be easily accessible"
         },
         {
-            "src": "/images/enterprise-ireland/nav-before.jpg",
+            "src": "images/enterprise-ireland/nav-before.jpg",
             "alt": "Enterprise Ireland",
             "caption": "The previous main navigation made it difficult to find relevant resources"
         },
         {
-            "src": "/images/enterprise-ireland/nav-after.jpg",
+            "src": "images/enterprise-ireland/nav-after.jpg",
             "alt": "Enterprise Ireland",
             "caption": "The new navigation structure centralises resources and makes it easy for users to navigate according to their goals"
         },
         {
-            "src": "/images/enterprise-ireland/mobile-nav.jpg",
+            "src": "images/enterprise-ireland/mobile-nav.jpg",
             "alt": "Enterprise Ireland",
             "caption": "The mobile experience initially (left) and after (right)"
         },
         {
-            "src": "/images/enterprise-ireland/wireframes-all.jpg",
+            "src": "images/enterprise-ireland/wireframes-all.jpg",
             "alt": "Enterprise Ireland",
             "caption": "Wireframes of the user journey from the landing page to a support"
         },
         {
-            "src": "/images/enterprise-ireland/ui-all.jpg",
+            "src": "images/enterprise-ireland/ui-all.jpg",
             "alt": "Enterprise Ireland",
             "caption": "Our structural and architectural work translated to UI by a marketing agency"
         }
