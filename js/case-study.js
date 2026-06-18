@@ -2,7 +2,7 @@ import { fetchCaseStudy } from "./case-studies.js";
 import { initLayout } from "./layout.js";
 
 function getSlugFromQuery() {
-  return new URLSearchParams(location.search).get("slug");
+  return location.pathname.split("/").filter(Boolean).pop() || null;
 }
 
 function createTag(text, { variant = "yellow" } = {}) {
