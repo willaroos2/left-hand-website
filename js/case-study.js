@@ -160,22 +160,25 @@ function renderCaseStudy(root, slug, data) {
     contentCol.append(createCaseStudyLink(data.link));
   }
 
-  const mediaCol = document.createElement("div");
-  mediaCol.className = "case-study-media";
+  const featuredEl = document.createElement("div");
+  featuredEl.className = "case-study-featured";
 
   if (data.featuredImage) {
-    mediaCol.append(createFeaturedImage(data.featuredImage, data.title));
+    featuredEl.append(createFeaturedImage(data.featuredImage, data.title));
   }
+
+  const captionsEl = document.createElement("div");
+  captionsEl.className = "case-study-captions";
 
   if (Array.isArray(data.imagesWithCaptions)) {
     for (const image of data.imagesWithCaptions) {
       if (image.src && image.caption) {
-        mediaCol.append(createImageWithCaption(image));
+        captionsEl.append(createImageWithCaption(image));
       }
     }
   }
 
-  body.append(contentCol, mediaCol);
+  body.append(contentCol, featuredEl, captionsEl);
   article.append(body);
 
   root.append(article);

@@ -22,5 +22,5 @@ export async function fetchCaseStudy(slug) {
 }
 
 export function caseStudyUrl(slug) {
-  return `projects.html?${encodeURIComponent(slug)}`;
+  return `/case-study?slug=${encodeURIComponent(slug)}`;
 }
