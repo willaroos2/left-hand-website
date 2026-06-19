@@ -1,5 +1,4 @@
 {
-  "$schema": "../case-studies/case-study.schema.json",
   "title": "Brand and product strategy for AltsPassport",
   "shortTitle": "Brand and product strategy",
   "organisation": "AltsPassport",
@@ -26,12 +25,22 @@
     {
       "src": "images/altspassport/website-elements.jpg",
       "alt": "Describe what is shown in the image",
-      "caption": "Visual elements on the webiste"
+      "caption": "Visual elements on the website"
     },
     {
       "src": "images/altspassport/ui-dashboard.jpg",
       "alt": "Describe what is shown in the image",
       "caption": "High fidelity UI mockups of a dashboard concept"
+    },
+    {
+      "src": "images/altspassport/ui-ideas.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "Ideas - Leveraging proprietary AI models and data sources"
+    },
+    {
+      "src": "images/altspassport/ui-investor.jpg",
+      "alt": "Describe what is shown in the image",
+      "caption": "AI-enabled matching is detailed and specific"
     }
   ],
   "sections": [

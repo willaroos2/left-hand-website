@@ -27,6 +27,7 @@ function caseStudyPageHtml(title) {
     <div data-site-header></div>
     <main id="main-content">
       <div data-case-study-root aria-live="polite"></div>
+      <div data-case-study-page-footer></div>
     </main>
     <div data-site-footer></div>
   </body>

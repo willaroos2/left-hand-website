@@ -1,4 +1,4 @@
-import { fetchCaseStudy } from "./case-studies.js";
+import { fetchCaseStudy, fetchCaseStudyManifest, caseStudyUrl } from "./case-studies.js";
 import { initLayout } from "./layout.js";
 
 function getSlugFromQuery() {
@@ -86,6 +86,8 @@ function createAccordionSections(sections = []) {
 }
 
 const BACK_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M10 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 12L16 12" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M4 20H20" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M4 4H20" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M22 18L22 6" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M2 18L2 6" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M12 8.01001L12 8.00001" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 16.01L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+
+const RECT_ARROW_RIGHT_SVG = `<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M14 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M4 20H20" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M4 4H20" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M22 18L22 6" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M2 18L2 6" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M16 12L8 12" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M12 8.01001L12 8.00001" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 16.01L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
 
 const LINK_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M10 17H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M14 7L13.99 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 19H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 5L11.99 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 19H19.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M5 5L4.99 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M10 10H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M14 14L13.99 14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M14 21H17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M10 3L7 3" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M21 14L21 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 10L3 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 12L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M16 12L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
 
@@ -185,10 +187,63 @@ function renderCaseStudy(root, slug, data) {
   document.title = data.title ?? slug;
 }
 
+function renderCaseStudyPageFooter(slot, currentSlug, manifest) {
+  const studies = manifest.caseStudies ?? [];
+  const idx = studies.findIndex(s => s.slug === currentSlug);
+  const nextStudy = studies.length > 1 ? studies[(idx + 1) % studies.length] : null;
+
+  const footer = document.createElement("div");
+  footer.className = "case-study-page-footer";
+
+  const left = document.createElement("div");
+  left.className = "cs-footer-left";
+  const leftH2 = document.createElement("h2");
+  leftH2.textContent = "Work with Leftside";
+  const leftIcon = document.createElement("span");
+  leftIcon.className = "cs-footer-left-icon";
+  leftIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M18 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 18H6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 21V14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M16 20V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 20V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 14H17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M21 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12.01 4H12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12.01 10H12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M14 8L15 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M9 8L10 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15 2L14 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M10 2L9 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M17 4L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 4L7 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+  left.append(leftH2, leftIcon);
+
+  footer.append(left);
+
+  if (nextStudy) {
+    const right = document.createElement("a");
+    right.className = "cs-footer-right";
+    right.href = caseStudyUrl(nextStudy.slug);
+
+    const nav = document.createElement("span");
+    nav.className = "case-study-back";
+    const navLabel = document.createElement("h6");
+    navLabel.textContent = "Next project";
+    const navIcon = document.createElement("span");
+    navIcon.className = "case-study-back-icon";
+    navIcon.innerHTML = RECT_ARROW_RIGHT_SVG;
+    nav.append(navLabel, navIcon);
+
+    const h2 = document.createElement("h2");
+    h2.textContent = nextStudy.shortTitle || nextStudy.title;
+
+    const readMore = document.createElement("span");
+    readMore.className = "card-read-more";
+    const readMoreLabel = document.createElement("h6");
+    readMoreLabel.textContent = "Read more";
+    const arrow = document.createElement("span");
+    arrow.className = "card-arrow";
+    arrow.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24"><g fill="none"><path d="M21 12L21 12.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 14L19 14.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M17 16L17 16.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15 18L15 18.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 10L19 10.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M17 8L17 8.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15 6L15 6.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 12L3 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+    readMore.append(readMoreLabel, arrow);
+
+    right.append(nav, h2, readMore);
+    footer.append(right);
+  }
+
+  slot.replaceChildren(footer);
+}
+
 async function initCaseStudyPage() {
   initLayout({ currentPath: "case-study.html" });
 
   const root = document.querySelector("[data-case-study-root]");
+  const footerSlot = document.querySelector("[data-case-study-page-footer]");
   const slug = getSlugFromQuery();
 
   if (!root) return;
@@ -199,8 +254,12 @@ async function initCaseStudyPage() {
   }
 
   try {
-    const data = await fetchCaseStudy(slug);
+    const [data, manifest] = await Promise.all([
+      fetchCaseStudy(slug),
+      fetchCaseStudyManifest(),
+    ]);
     renderCaseStudy(root, slug, data);
+    if (footerSlot) renderCaseStudyPageFooter(footerSlot, slug, manifest);
   } catch (error) {
     root.textContent = error.message;
   }
