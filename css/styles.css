@@ -711,25 +711,35 @@ small {
 .case-study-page-footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 40px;
   margin-top: 100px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
 }
 
 .cs-footer-left {
+  --card-accent: var(--color-pink-base);
   height: 185px;
   padding: 0 32px;
   background: var(--color-yellow-base);
   color: var(--color-neutral-900);
+  border-radius: var(--radius-md);
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 24px;
+  text-decoration: none;
+  transition: box-shadow 120ms ease, transform 120ms ease;
 }
 
 .cs-footer-left h2 {
   margin: 0;
+}
+
+
+.cs-footer-left:hover {
+  transform: translate(6px, -6px);
+  box-shadow: -8px 8px 0 0 var(--card-accent);
 }
 
 .cs-footer-left-icon {
@@ -744,26 +754,28 @@ small {
   padding: 0 32px;
   background: var(--color-neutral-800);
   color: var(--color-neutral-white);
+  border-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
   text-decoration: none;
-  transition: background-color 120ms ease;
+  transition: box-shadow 120ms ease, transform 120ms ease;
 }
 
 .cs-footer-right h2 {
   margin: 0;
-  transition: text-decoration 120ms ease;
+  margin-bottom: 12px;
 }
 
-.cs-footer-right:hover h2 {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+.cs-footer-right:hover {
+  transform: translate(6px, -6px);
+  box-shadow: -8px 8px 0 0 var(--card-accent);
 }
+
 
 .cs-footer-right .case-study-back {
+  margin-top: 8px;
   margin-bottom: 8px;
   pointer-events: none;
 }

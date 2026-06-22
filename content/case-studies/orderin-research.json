@@ -5,7 +5,7 @@
     "year": "2024",
     "role": "Lead Product Designer",
     "tags": ["Delivery operations", "User research", "User interviews"],
-    "featuredImage": "images/orderin-research/featured-image.jpg",
+    "featuredImage": "images/orderin-research/featured-image-alt.jpg",
     "imagesWithCaptions": [
         {
             "src": "images/orderin-research/data-gathering.jpg",
@@ -18,7 +18,7 @@
             "caption": "Drivers shared emotionally charged stories that were not always easy to hear"
         },
         {
-            "src": "images/orderin-research/driver-outcomes.jpg",
+            "src": "images/orderin-research/driver-outcomes-alt.jpg",
             "alt": "Orderin Research",
             "caption": "Increased empathy and respect for drivers, along with better earnings"
         }

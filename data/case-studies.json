@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T16:55:21.789Z",
+  "generatedAt": "2026-06-22T16:13:45.987Z",
   "caseStudies": [
     {
       "slug": "altspassport",
@@ -29,7 +29,7 @@
         "User research",
         "User interviews"
       ],
-      "featuredImage": "images/orderin-research/featured-image.jpg"
+      "featuredImage": "images/orderin-research/featured-image-alt.jpg"
     },
     {
       "slug": "enterprise-ireland",
@@ -43,7 +43,7 @@
         "Information architecture",
         "Website design"
       ],
-      "featuredImage": "images/enterprise-ireland/featured-image.jpg"
+      "featuredImage": "images/enterprise-ireland/featured-image-alt.jpg"
     }
   ]
 }

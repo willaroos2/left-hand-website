@@ -187,6 +187,90 @@ function renderCaseStudy(root, slug, data) {
   document.title = data.title ?? slug;
 }
 
+function measureElements(container, elements) {
+  const PAD = 4;
+  const cr = container.getBoundingClientRect();
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const el of elements) {
+    const r = el.getBoundingClientRect();
+    minX = Math.min(minX, r.left - cr.left);
+    minY = Math.min(minY, r.top - cr.top);
+    maxX = Math.max(maxX, r.right - cr.left);
+    maxY = Math.max(maxY, r.bottom - cr.top);
+  }
+  return {
+    minX: Math.max(0, minX - PAD),
+    minY: Math.max(0, minY - PAD),
+    maxX: Math.min(container.offsetWidth, maxX + PAD),
+    maxY: Math.min(container.offsetHeight, maxY + PAD),
+  };
+}
+
+function pixelDissolve(container, bounds, onSwap) {
+  const PIXEL = 6.35;
+  const PHASE_MS = 300;
+  const COLORS = ["#f3e367"];
+
+  const { minX, minY, maxX, maxY } = bounds;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = maxX - minX;
+  canvas.height = maxY - minY;
+  canvas.style.cssText = `position:absolute;left:${minX}px;top:${minY}px;pointer-events:none;z-index:1;`;
+  container.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+
+  const cols = Math.ceil(canvas.width / PIXEL);
+  const rows = Math.ceil(canvas.height / PIXEL);
+  const n = cols * rows;
+  const colorMap = Array.from({ length: n }, () => COLORS[Math.floor(Math.random() * COLORS.length)]);
+  const coverOrder = Array.from({ length: n }, (_, i) => i).sort(() => Math.random() - 0.5);
+
+  let phase = "cover";
+  let phaseStart = null;
+  let revealOrder = null;
+  let cancelled = false;
+
+  function draw(ts) {
+    if (cancelled) { canvas.remove(); return; }
+    if (!phaseStart) phaseStart = ts;
+    const progress = Math.min((ts - phaseStart) / PHASE_MS, 1);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (phase === "cover") {
+      const filled = Math.floor(progress * n);
+      for (let i = 0; i < filled; i++) {
+        const idx = coverOrder[i];
+        const col = idx % cols, row = Math.floor(idx / cols);
+        const x = Math.round(col * PIXEL), y = Math.round(row * PIXEL);
+        ctx.fillStyle = colorMap[idx];
+        ctx.fillRect(x, y, Math.round((col + 1) * PIXEL) - x, Math.round((row + 1) * PIXEL) - y);
+      }
+      if (progress >= 1) {
+        onSwap();
+        revealOrder = Array.from({ length: n }, (_, i) => i).sort(() => Math.random() - 0.5);
+        phase = "reveal";
+        phaseStart = ts;
+      }
+    } else {
+      const cleared = Math.floor(progress * n);
+      for (let i = cleared; i < n; i++) {
+        const idx = revealOrder[i];
+        const col = idx % cols, row = Math.floor(idx / cols);
+        const x = Math.round(col * PIXEL), y = Math.round(row * PIXEL);
+        ctx.fillStyle = colorMap[idx];
+        ctx.fillRect(x, y, Math.round((col + 1) * PIXEL) - x, Math.round((row + 1) * PIXEL) - y);
+      }
+      if (progress >= 1) { canvas.remove(); return; }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+  return () => { cancelled = true; };
+}
+
 function renderCaseStudyPageFooter(slot, currentSlug, manifest) {
   const studies = manifest.caseStudies ?? [];
   const idx = studies.findIndex(s => s.slug === currentSlug);
@@ -195,13 +279,66 @@ function renderCaseStudyPageFooter(slot, currentSlug, manifest) {
   const footer = document.createElement("div");
   footer.className = "case-study-page-footer";
 
-  const left = document.createElement("div");
+  const DINNER_ICON = `<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M18 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 18H6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 21V14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M16 20V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 20V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 14H17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M21 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12.01 4H12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12.01 10H12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M14 8L15 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M9 8L10 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15 2L14 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M10 2L9 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M17 4L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 4L7 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+  const ENVELOPE_ICON = `<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M2 8H5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 8H22" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 10H9" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15 10H17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M11 12H13" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M11 20H4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M20 4H4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M22 6V10" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M2 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M21.01 18L21 18" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M23.01 14L23 14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15.01 22L15 22" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M17.01 18L17 18" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 14L19 16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M19 20L19 22" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+
+  const left = document.createElement("a");
   left.className = "cs-footer-left";
+  left.href = "contact.html";
   const leftH2 = document.createElement("h2");
   leftH2.textContent = "Work with Leftside";
   const leftIcon = document.createElement("span");
   leftIcon.className = "cs-footer-left-icon";
-  leftIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24" aria-hidden="true"><g fill="none"><path d="M18 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 18H6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 21V14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M16 20V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 20V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 14H17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M21 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M3 12V21" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12.01 4H12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12.01 10H12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M14 8L15 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M9 8L10 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M15 2L14 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M10 2L9 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M17 4L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M7 4L7 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+  leftIcon.innerHTML = DINNER_ICON;
+
+  let cancelDissolve = null;
+  let currentState = "default";
+
+  function dissolveToState(state) {
+    if (currentState === state) return;
+    if (cancelDissolve) cancelDissolve();
+    currentState = state;
+
+    const before = measureElements(left, [leftH2, leftIcon]);
+
+    // Swap to target state to measure its bounds, then restore — no repaint between sync calls
+    if (state === "hover") {
+      leftH2.textContent = "Get in touch";
+      leftIcon.innerHTML = ENVELOPE_ICON;
+    } else {
+      leftH2.textContent = "Work with Leftside";
+      leftIcon.innerHTML = DINNER_ICON;
+    }
+    const after = measureElements(left, [leftH2, leftIcon]);
+    if (state === "hover") {
+      leftH2.textContent = "Work with Leftside";
+      leftIcon.innerHTML = DINNER_ICON;
+    } else {
+      leftH2.textContent = "Get in touch";
+      leftIcon.innerHTML = ENVELOPE_ICON;
+    }
+
+    const bounds = {
+      minX: Math.min(before.minX, after.minX),
+      minY: Math.min(before.minY, after.minY),
+      maxX: Math.max(before.maxX, after.maxX),
+      maxY: Math.max(before.maxY, after.maxY),
+    };
+
+    cancelDissolve = pixelDissolve(left, bounds, () => {
+      if (state === "hover") {
+        leftH2.textContent = "Get in touch";
+        leftIcon.innerHTML = ENVELOPE_ICON;
+      } else {
+        leftH2.textContent = "Work with Leftside";
+        leftIcon.innerHTML = DINNER_ICON;
+      }
+    });
+  }
+
+  left.addEventListener("mouseenter", () => dissolveToState("hover"));
+  left.addEventListener("mouseleave", () => dissolveToState("default"));
+
   left.append(leftH2, leftIcon);
 
   footer.append(left);
