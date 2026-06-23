@@ -35,6 +35,29 @@ function createFeaturedImage(src, alt) {
   return img;
 }
 
+function createIframeWithCaption({ src, caption, height }) {
+  const figure = document.createElement("figure");
+  const iframe = document.createElement("iframe");
+  iframe.src = src;
+  iframe.setAttribute("allowfullscreen", "");
+  iframe.setAttribute("frameborder", "0");
+  iframe.style.cssText = "width:100%; border:0;";
+  if (height) {
+    iframe.style.height = height + "px";
+  } else {
+    iframe.addEventListener("load", () => {
+      const h = iframe.contentDocument.body.scrollHeight;
+      if (h > 0) iframe.style.height = h + "px";
+    });
+  }
+
+  const figcaption = document.createElement("figcaption");
+  figcaption.textContent = caption;
+
+  figure.append(figcaption, iframe);
+  return figure;
+}
+
 function createImageWithCaption({ src, alt, caption }) {
   const figure = document.createElement("figure");
   const img = document.createElement("img");
@@ -173,9 +196,13 @@ function renderCaseStudy(root, slug, data) {
   captionsEl.className = "case-study-captions";
 
   if (Array.isArray(data.imagesWithCaptions)) {
-    for (const image of data.imagesWithCaptions) {
-      if (image.src && image.caption) {
-        captionsEl.append(createImageWithCaption(image));
+    for (const item of data.imagesWithCaptions) {
+      if (item.src) {
+        if (item.type === "iframe") {
+          captionsEl.append(createIframeWithCaption(item));
+        } else {
+          captionsEl.append(createImageWithCaption(item));
+        }
       }
     }
   }
@@ -286,7 +313,7 @@ function renderCaseStudyPageFooter(slot, currentSlug, manifest) {
   left.className = "cs-footer-left";
   left.href = "contact.html";
   const leftH2 = document.createElement("h2");
-  leftH2.textContent = "Work with Leftside";
+  leftH2.textContent = "Work with me";
   const leftIcon = document.createElement("span");
   leftIcon.className = "cs-footer-left-icon";
   leftIcon.innerHTML = DINNER_ICON;
@@ -306,12 +333,12 @@ function renderCaseStudyPageFooter(slot, currentSlug, manifest) {
       leftH2.textContent = "Get in touch";
       leftIcon.innerHTML = ENVELOPE_ICON;
     } else {
-      leftH2.textContent = "Work with Leftside";
+      leftH2.textContent = "Work with me";
       leftIcon.innerHTML = DINNER_ICON;
     }
     const after = measureElements(left, [leftH2, leftIcon]);
     if (state === "hover") {
-      leftH2.textContent = "Work with Leftside";
+      leftH2.textContent = "Work with me";
       leftIcon.innerHTML = DINNER_ICON;
     } else {
       leftH2.textContent = "Get in touch";
@@ -330,7 +357,7 @@ function renderCaseStudyPageFooter(slot, currentSlug, manifest) {
         leftH2.textContent = "Get in touch";
         leftIcon.innerHTML = ENVELOPE_ICON;
       } else {
-        leftH2.textContent = "Work with Leftside";
+        leftH2.textContent = "Work with me";
         leftIcon.innerHTML = DINNER_ICON;
       }
     });

@@ -1,40 +1,49 @@
 {
-  "$schema": "../case-studies/case-study.schema.json",
-  "title": "Full Case Study Title",
-  "shortTitle": "Short Title",
-  "organisation": "Organisation Name",
+  "title": "Know your client (KYC) verification for Sanlam advisers",
+  "shortTitle": "Client verification for Sanlam",
+  "organisation": "Lifecheq",
   "year": "2024",
   "role": "Your Role",
-  "tags": ["Tag One", "Tag Two"],
-  "featuredImage": "images/slug/featured-image.jpg",
+  "tags": ["Fintech", "Enterprise", "UX Design"],
+  "featuredImage": "images/lifecheq-kyc/kyc-featured.jpg",
   "imagesWithCaptions": [
     {
-      "src": "images/slug/image-one.jpg",
-      "alt": "Describe what is shown in the image",
-      "caption": "Caption for image one"
+      "type": "iframe",
+      "src": "embed/verification-flow-embed.html",
+      "caption": "First pass at implementing the KYC feature"
     },
     {
-      "src": "images/slug/image-two.jpg",
-      "alt": "Describe what is shown in the image",
-      "caption": "Caption for image two"
+      "type": "iframe",
+      "src": "embed/verification-flow-v2-embed.html",
+      "caption": "The second version corrected some issues, but wasn't perfect",
+      "height": 790
+    },
+    {
+      "type": "iframe",
+      "src": "embed/verification-flow-v3-embed.html",
+      "caption": "The third version hit the mark and was implemented across the retail mass division"
     }
   ],
   "sections": [
     {
       "heading": "About",
-      "content": "<p>Placeholder overview content.</p>"
+      "content": "Sanlam is the biggest insurer in South Africa, and the biggest non-banking financial services provider in the African continent. To help combat fraud, Lifecheq introduced a client verification feature that works with a selfie to verify clients’ identities. The feature fitted into the adviser portal, developed by Lifecheq, and was a new addition to Sanlam’s internal processes. Our Lifecheq project team worked closely with Sanlam stakeholders to design, develop, test and iterate on the feature as it rolled out to advisers."
     },
     {
       "heading": "Process",
-      "content": "<p>Placeholder problem content.</p>"
+      "content": "When I joined the project, a fist version of a solution had already been developed and trailed. Based on feedback from pilot groups, it missed the mark in a number of important ways. We set about using feedback and quick usability testing to iterate twice more. Working closely with users to understand different scenarios and requirements, and translating feedback to a simple and flexible UI design made the feature succeed on the third try."
+    },
+    {
+      "heading": "Design details",
+      "content": "The feature needed to be robust: Sanlam advisers could be with their clients at the time, or not. Clients may have access to a smartphone with a camera, or not. There were considerations around data consumption for clients and advisers, problems with access to mobile networks (a reality for clients living in rural areas), and hardware and permissions-related issues on mobile devices. <br><br>Whenever a client interacts with an adviser to take out a new product, or adjust an existing one, they are required to complete selfie verification for security. <br><br>We integrated with a third party solution, Sprint Hive, who provided the verification tech. First, sprint Hive generates a web link for submitting the selfie. Advisers can either share or send the link to their clients, or if they're with the clients, complete it on their device.<br><br> When a selfie is taken, Sprint Hive checks Department of Home Affairs databases for photos associated with the ID number. The degree to which the selfie matches data in the DHA database determines the outcome of the verification. If there's a weak match, or no match, the client may be tagged as high risk, and blocked from taking out new policies."
+    },
+    {
+      "heading": "Iterating to improve",
+      "content": "<b>Version 1: Challenges</b><br><ul><li>'Send link' method could not be changed once selected</li><li>The 30s wait time to resend an SMS was understood by advisers as they only had 30s to complete the process</li><li>Advisers did not get that they could copy and share the link the with clients once they open it in their browsers</li><li>Advisers had no visibility into the client's progress, and were unable to troubleshoot problems</li></ul><b>Version 2: Improvements and misteps</b><br><ul><li>✅ Link sending methods can be reused</li><li>✅ Improved UX copy</li><li>✅ Help advisers see how clients are progressing</li><li>✅ Help advisers troubleshoot when the client's device permissions blocked camera use</li><li>✅ Removed SMS retry timer and displayed number of retries available instead</li><li>❌ All the colourful alerts made the UI overwhelming and increased cognitive load</li><li>❌ Advisers still had a limited view of the entire process</li><li>❌ Persisting the link sending methods in the main content made the UI bloated</li></ul><b>Version 3: Final design </b><br><ul><li>Streamlined and compact design</li><li>The entire verification process is clearly laid out</li><li>Simple and non-technical language used</li><li>Resending the link is accessible but not in the way</li></ul>"
     },
     {
       "heading": "Outcome",
-      "content": "<p>Placeholder outcome content.</p>"
+      "content": "As of today, the feature has been implemented across the entire retail mass division of Sanlam. This means it used by thousands of advisers daily, for each client interaction. The feature has since been implemented as a component of various other client service processes. It's flexible, adaptable, easily learnable, withstands large usage volumes, and helps Sanlam solve one of their most critical problems."
     }
-  ],
-  "link": {
-    "url": "https://example.com",
-    "displayLink": "example.com"
-  }
+  ]
 }

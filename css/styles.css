@@ -244,6 +244,15 @@ nav[aria-label="Primary"].is-open ul {
   display: block;
 }
 
+.case-study-media iframe,
+.case-study-captions iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  border: none;
+  display: block;
+}
+
 .case-study-media {
   display: flex;
   flex-direction: column;

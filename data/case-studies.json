@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-22T16:13:45.987Z",
+  "generatedAt": "2026-06-22T21:19:02.601Z",
   "caseStudies": [
     {
       "slug": "altspassport",
@@ -44,6 +44,20 @@
         "Website design"
       ],
       "featuredImage": "images/enterprise-ireland/featured-image-alt.jpg"
+    },
+    {
+      "slug": "lifecheq-kyc",
+      "title": "Know your client (KYC) verification for Sanlam advisers",
+      "shortTitle": "Client verification for Sanlam",
+      "organisation": "Lifecheq",
+      "year": "2024",
+      "role": "Your Role",
+      "tags": [
+        "Fintech",
+        "Enterprise",
+        "UX Design"
+      ],
+      "featuredImage": "images/lifecheq-kyc/kyc-featured.jpg"
     }
   ]
 }
