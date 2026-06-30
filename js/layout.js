@@ -4,7 +4,7 @@ const LOGO = {
 };
 
 const NAV_LINKS = [
-  { href: "projects.html", label: "Projects" },
+  { href: "index.html", label: "Projects" },
   { href: "about.html", label: "About" },
   { href: "contact.html", label: "Contact" },
 ];
@@ -13,7 +13,7 @@ function isNavLinkCurrent(href, currentPath) {
   const pathBase = currentPath.split("/").pop();
   if (href === pathBase) return true;
 
-  if (href === "projects.html" && pathBase === "case-study.html") {
+  if (href === "index.html" && (pathBase === "" || pathBase === "index.html" || pathBase === "case-study.html")) {
     return true;
   }
 
@@ -145,7 +145,17 @@ function createFooter() {
     right.append(link);
   }
 
-  inner.append(left, right);
+  const scrollTop = document.createElement("a");
+  scrollTop.href = "#";
+  scrollTop.className = "footer-scroll-top";
+  scrollTop.setAttribute("aria-label", "Scroll to top");
+  scrollTop.innerHTML = `<svg class="footer-scroll-top-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g fill="none"><path d="M14 9L10 9" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M4 6L4 6.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M6 4L6 4.01" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M20.01 6L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M18.01 4L18 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M20.01 18L20 18" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M18.01 20L18 20" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M6.01001 20L6.00001 20" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M4.01001 18L4.00001 18" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M22 8L22 16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M2 8L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 2L16 2" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M8 22L16 22" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 6.99999L12 17" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M8 11L8 10.99" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M16 11L16 10.99" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></g></svg>`;
+  scrollTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  inner.append(left, scrollTop, right);
   footer.append(divider, inner);
 
   return footer;
@@ -156,7 +166,10 @@ export function initLayout({ currentPath = location.pathname } = {}) {
   const footerSlot = document.querySelector("[data-site-footer]");
 
   if (headerSlot) {
-    headerSlot.replaceWith(createSiteHeader(currentPath));
+    const variant = headerSlot.dataset.headerVariant;
+    const header = createSiteHeader(currentPath);
+    if (variant) header.classList.add(`header--${variant}`);
+    headerSlot.replaceWith(header);
   }
 
   if (footerSlot) {

@@ -262,6 +262,132 @@ function renderCaseStudy(root, slug, data) {
   document.title = data.title ?? slug;
 }
 
+// ─── Page header animation ────────────────────────────────────────────────────
+
+function animatePageHeader() {
+  const pageHeader = document.querySelector(".page-header");
+  if (!pageHeader) return;
+  const h1         = pageHeader.querySelector("h1");
+  const subheading  = pageHeader.querySelector(".subheading");
+  if (!h1) return;
+
+  setTimeout(() => requestAnimationFrame(() => {
+    const h1Rect        = h1.getBoundingClientRect();
+    const containerRect = pageHeader.getBoundingClientRect();
+    const W = Math.ceil(h1Rect.width);
+    const H = Math.ceil(h1Rect.height);
+
+    // Render the h1 text to an offscreen canvas to detect where glyphs are
+    const computed      = getComputedStyle(h1);
+    const fontSize      = parseFloat(computed.fontSize);
+    const fontFamily    = computed.fontFamily;
+    const fontWeight    = computed.fontWeight;
+    const letterSpacing = computed.letterSpacing;
+    const lineHeight    = parseFloat(computed.lineHeight) || fontSize;
+    const text          = h1.textContent.trim();
+
+    const probe = document.createElement("canvas");
+    probe.width  = W;
+    probe.height = H;
+    const pCtx = probe.getContext("2d");
+    pCtx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+    if ("letterSpacing" in pCtx) pCtx.letterSpacing = letterSpacing;
+    pCtx.textBaseline = "alphabetic";
+    pCtx.fillStyle = "#ffffff";
+
+    const ascent = pCtx.measureText("Hg").fontBoundingBoxAscent ?? (fontSize * 0.8);
+
+    // Wrap text to match h1's layout
+    function wrapText(str, maxW) {
+      const words = str.split(" ");
+      const lines = [];
+      let line = "";
+      for (const w of words) {
+        const test = line ? `${line} ${w}` : w;
+        if (pCtx.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+        else line = test;
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    const lines = wrapText(text, W);
+    lines.forEach((line, i) => pCtx.fillText(line, 0, ascent + i * lineHeight));
+
+    const pixels = pCtx.getImageData(0, 0, W, H).data;
+    function hasGlyph(bx, by, bw, bh) {
+      for (let sy = by; sy < Math.min(by + bh, H); sy += 2)
+        for (let sx = bx; sx < Math.min(bx + bw, W); sx += 2)
+          if (pixels[(sy * W + sx) * 4 + 3] > 30) return true;
+      return false;
+    }
+
+    // Reveal h1 and canvas in the same frame so there's no flash
+    h1.style.opacity = "";
+
+    const canvas = document.createElement("canvas");
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.cssText = `position:absolute;left:${Math.round(h1Rect.left - containerRect.left)}px;top:${Math.round(h1Rect.top - containerRect.top)}px;width:${W}px;height:${H}px;pointer-events:none;`;
+    pageHeader.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    const BG  = "#ffffff";
+
+    // Place blocks only where letter pixels exist
+    const SIZES   = [8, 12, 16, 20, 24];
+    const pick    = () => SIZES[Math.floor(Math.random() * SIZES.length)];
+    const DENSITY = 0.6;
+    const GRID    = 16;
+
+    const blocks = [];
+    for (let y = 0; y < H; y += GRID) {
+      for (let x = 0; x < W; x += GRID) {
+        if (!hasGlyph(x, y, GRID, GRID)) continue;
+        if (Math.random() > DENSITY) continue;
+        const w = Math.min(pick(), W - x);
+        const h = Math.min(pick(), H - y);
+        const removeAt = Math.max(0, Math.min(1,
+          (y / H) + (Math.random() - 0.5) * 0.18
+        ));
+        blocks.push({ x, y, w, h, removeAt });
+      }
+    }
+
+    // Draw all blocks immediately so h1 is covered on first paint
+    ctx.fillStyle = BG;
+    for (const b of blocks) ctx.fillRect(b.x, b.y, b.w, b.h);
+
+    const DURATION = 900;
+    let startTime  = null;
+
+    function draw(ts) {
+      if (!startTime) startTime = ts;
+      const t = Math.min((ts - startTime) / DURATION, 1);
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = BG;
+
+      let anyVisible = false;
+      for (const b of blocks) {
+        if (t < b.removeAt) {
+          ctx.fillRect(b.x, b.y, b.w, b.h);
+          anyVisible = true;
+        }
+      }
+
+      if (!anyVisible || t >= 1) {
+        canvas.remove();
+        if (subheading) setTimeout(() => { subheading.style.opacity = "1"; }, 200);
+        return;
+      }
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  }), 400);
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 async function initProjectsPage() {
@@ -283,6 +409,8 @@ async function initProjectsPage() {
     }
     return;
   }
+
+  animatePageHeader();
 
   const listRoot = document.querySelector("[data-case-study-list]");
   if (!listRoot) return;
