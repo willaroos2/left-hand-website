@@ -1,6 +1,6 @@
 const LOGO = {
   href: "index.html",
-  label: "Left hand",
+  label: "Leftside",
 };
 
 const NAV_LINKS = [
@@ -24,7 +24,7 @@ function createLogo() {
   const logo = document.createElement("a");
   logo.href = LOGO.href;
   logo.textContent = LOGO.label;
-  logo.setAttribute("aria-label", "Left hand, home");
+  logo.setAttribute("aria-label", "Leftside, home");
   return logo;
 }
 

@@ -477,6 +477,11 @@ details.is-open > .accordion-body {
 
 /* Nav */
 
+body > header > a {
+  font-family: var(--font-family-label);
+  font-size: var(--font-size-label-sm);
+}
+
 nav[aria-label="Primary"] a {
   font-family: var(--font-family-label);
   font-size: var(--font-size-label-sm);
