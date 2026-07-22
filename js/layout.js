@@ -23,8 +23,14 @@ function isNavLinkCurrent(href, currentPath) {
 function createLogo() {
   const logo = document.createElement("a");
   logo.href = LOGO.href;
-  logo.textContent = LOGO.label;
+  logo.className = "site-logo";
   logo.setAttribute("aria-label", "Leftside, home");
+
+  const img = document.createElement("img");
+  img.src = "images/ls-logo.svg";
+  img.alt = LOGO.label;
+  logo.append(img);
+
   return logo;
 }
 

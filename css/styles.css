@@ -183,7 +183,7 @@ main {
   body > header {
     flex-wrap: wrap;
     height: auto;
-    min-height: 70px;
+    min-height: 80px;
   }
 
   .nav-toggle {
@@ -207,7 +207,7 @@ body > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 80px;
 }
 
 body > header a,
@@ -480,6 +480,17 @@ details.is-open > .accordion-body {
 body > header > a {
   font-family: var(--font-family-label);
   font-size: var(--font-size-label-sm);
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo img {
+  width: 130px;
+  height: auto;
+  display: block;
 }
 
 nav[aria-label="Primary"] a {
